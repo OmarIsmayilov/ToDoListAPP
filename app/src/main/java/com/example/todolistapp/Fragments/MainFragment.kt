@@ -44,7 +44,6 @@ class MainFragment : Fragment() {
         taskList = arrayListOf<Task>()
         getDataFromDb()
 
-
         binding.btnAdd.setOnClickListener { showBottomSheet() }
         binding.btnProfile.setOnClickListener{
             findNavController().navigate(MainFragmentDirections.actionMainFragmentToProfileFragment())

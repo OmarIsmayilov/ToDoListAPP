@@ -1,5 +1,6 @@
 package com.example.todolistapp.Fragments
 
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -29,6 +30,8 @@ class SplashFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        requireActivity().window.statusBarColor = Color.parseColor("#44D3FF")
+
 
         Handler(Looper.myLooper()!!).postDelayed({
             if(auth.currentUser!=null){
@@ -37,7 +40,7 @@ class SplashFragment : Fragment() {
                 findNavController().navigate(SplashFragmentDirections.actionSplashFragmentToLoginFragment())
 
             }
-        },3000)
+        },2500)
     }
 
 

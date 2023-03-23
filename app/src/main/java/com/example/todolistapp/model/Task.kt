@@ -8,4 +8,5 @@ data class Task(
     val title: String = "",
     var visibility: Boolean  = false,
     val complete : Boolean = false,
+    var id : String = ""
 )

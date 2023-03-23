@@ -13,9 +13,11 @@ import com.example.todolistapp.databinding.FragmentBottomSheetBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.timepicker.MaterialTimePicker
+import com.google.android.material.timepicker.TimeFormat
 import com.google.android.material.timepicker.TimeFormat.CLOCK_24H
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 
@@ -38,29 +40,15 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.btnTimePicker.setOnClickListener { openTimePicker() }
 
-        binding.btnAddTask.setOnClickListener {
-            checkData()
-        }
+        binding.btnAddTask.setOnClickListener { checkData() }
+        binding.btnTimePicker.setOnClickListener { openTimePicker() }
 
         binding.radioG.setOnCheckedChangeListener { radioGroup, i ->
             when(i){
-                R.id.rbToday -> {
-                    time = "Today"
-                    //binding.rbToday.setTextColor(Color.WHITE)
-                }
-                R.id.rbTomorrow -> {
-                    time = "Tomorrow"
-                    //binding.rbTomorrow.setTextColor(Color.WHITE)
-                }
-                R.id.rbWeekend -> {
-                    time = "This weekend"
-                    //binding.rbWeekend.setTextColor(Color.WHITE)
-                }R.id.btnTimePicker -> {
-                        openTimePicker()
-                }
-
+                R.id.rbToday ->  time = "Today"
+                R.id.rbTomorrow -> time = "Tomorrow"
+                R.id.rbWeekend -> time = "This weekend"
             }
 
         }
@@ -73,27 +61,25 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
         val description = binding.etDescription.text.toString()
         isPriority = binding.cbPriority.isChecked
 
-
         if(title.isEmpty()){
-            Snackbar.make(requireView(),"Title field cannot be empty",Snackbar.LENGTH_SHORT).show()
+            Toast("Title field cannot be empty")
         }else if(description.isEmpty()){
-            Snackbar.make(requireView(),"Description field cannot be empty",Snackbar.LENGTH_SHORT).show()
+            Toast("Description field cannot be empty")
         }else if(time == ""){
-            Toast("Choose the time")
-        }
+            Toast("Choose the time") }
         else{
             val task = Task(description,isPriority,time,title)
-            Log.e("Netice ispriority",isPriority.toString())
             saveData(task)
-
         }
 
 
     }
 
     private fun saveData(task : Task) {
+        val uid = UUID.randomUUID().toString()
+        task.id = uid
         val ref = FirebaseDatabase.getInstance().reference
-        ref.child("Tasks").child(auth.currentUser?.uid.toString()).child(UUID.randomUUID().toString()).setValue(task).addOnCompleteListener {
+        ref.child("Tasks").child(auth.currentUser?.uid.toString()).child(uid).setValue(task).addOnCompleteListener {
             if (it.isSuccessful){
                 Toast("Task successfully added")
                 dismiss()
@@ -113,6 +99,7 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
         picker.show(childFragmentManager,"TAG")
 
         picker.addOnPositiveButtonClickListener {
+            picker.minute
             time = "${picker.hour}:${picker.minute}"
         }
 

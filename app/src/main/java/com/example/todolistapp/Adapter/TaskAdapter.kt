@@ -7,9 +7,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todolistapp.model.Task
 import com.example.todolistapp.databinding.CardItemBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
 class TaskAdapter(var taskList : ArrayList<Task>) : RecyclerView.Adapter<TaskAdapter.taskHolder>() {
-
+    private val ref = FirebaseDatabase.getInstance().getReference("Tasks")
+    private val uid = FirebaseAuth.getInstance().currentUser?.uid.toString()
     inner class taskHolder(val binding : CardItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): taskHolder {
@@ -23,7 +26,8 @@ class TaskAdapter(var taskList : ArrayList<Task>) : RecyclerView.Adapter<TaskAda
 
 
     override fun onBindViewHolder(holder: taskHolder, position: Int) {
-        val task = taskList[position]
+        val sortedList = taskList.sortedByDescending { it.priority }
+        val task =sortedList[position]
         holder.binding.task = task
 
         if(task.priority!!){
@@ -41,10 +45,14 @@ class TaskAdapter(var taskList : ArrayList<Task>) : RecyclerView.Adapter<TaskAda
             notifyItemChanged(position)
         }
 
+        holder.binding.ibRemove.setOnClickListener { removeTask(task) }
+
 
     }
 
-
+    private fun removeTask(task : Task) {
+        ref.child(uid).child(task.id).removeValue()
+    }
 
 
 }
