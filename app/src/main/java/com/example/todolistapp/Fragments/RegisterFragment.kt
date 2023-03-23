@@ -6,11 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedDispatcher
 import androidx.navigation.fragment.findNavController
-import com.example.todolistapp.Model.User
-import com.example.todolistapp.R
-import com.example.todolistapp.databinding.FragmentLoginBinding
+import com.example.todolistapp.model.User
 import com.example.todolistapp.databinding.FragmentRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase

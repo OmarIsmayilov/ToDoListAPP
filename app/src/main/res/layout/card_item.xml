@@ -1,29 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:elevation="6dp"
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="Task"
+            type="com.example.todolistapp.model.Task" />
+    </data>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="370dp"
+    android:layout_height="wrap_content"
     android:layout_marginStart="10dp"
-    android:layout_marginEnd="10dp"
-    android:layout_height="wrap_content">
+    android:layout_marginEnd="10dp">
 
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="370dp"
-        android:layout_height="70dp"
-        android:layout_margin="6dp"
-        android:elevation="9dp"
-        app:cardCornerRadius="15dp"
+    <RelativeLayout
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@drawable/card_bg"
+        android:elevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintTop_toTopOf="parent">
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/tvTitle"
@@ -31,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="17dp"
                 android:layout_marginTop="10dp"
-                android:text="Task1"
+                android:text="@{Task.component4()}"
                 android:textColor="@color/mainBlue"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +54,7 @@
                 android:layout_marginStart="17dp"
                 android:layout_marginBottom="8dp"
                 android:gravity="center"
-                android:text="9march 19:00"
+                android:text="@{Task.component3()}"
                 android:textColor="#98999A"
                 android:textSize="13sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -60,7 +68,7 @@
                 android:layout_width="10dp"
                 android:layout_height="10dp"
                 android:layout_marginStart="5dp"
-                android:layout_marginBottom="12dp"
+                android:layout_marginBottom="8dp"
                 android:background="@drawable/baseline_circle_24"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toTopOf="@+id/tvTime"
@@ -84,6 +92,57 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    </androidx.cardview.widget.CardView>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clExpand"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/constraintLayout2"
+            app:layout_constraintTop_toBottomOf="parent">
+
+            <ImageButton
+                android:id="@+id/ibRemove"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="5dp"
+                android:background="@color/transparent"
+                android:src="@drawable/baseline_delete_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </ImageButton>
+
+            <ScrollView
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="14dp"
+                android:layout_marginBottom="3dp"
+                android:layoutDirection="rtl"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tvDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{Task.component1()}"
+                    android:textColor="@color/mainBlue"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                </TextView>
+
+            </ScrollView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </RelativeLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

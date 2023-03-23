@@ -8,11 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.example.todolistapp.Adapter.TaskAdapter
-import com.example.todolistapp.Model.Task
+import com.example.todolistapp.model.Task
 import com.example.todolistapp.R
 import com.example.todolistapp.databinding.FragmentMainBinding
 import com.google.firebase.auth.FirebaseAuth
