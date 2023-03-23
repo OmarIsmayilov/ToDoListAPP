@@ -77,47 +77,92 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
-            <Button
-                android:id="@+id/btnTimePicker"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="start"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/baseline_calendar_today_24"
-                app:backgroundTint="@color/mainBlue"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvDesc">
+    <RadioGroup
+        android:id="@+id/radioG"
+        android:layout_width="wrap_content"
+        android:layout_height="42dp"
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.37"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDesc">
 
-            </Button>
 
-            <!--<TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="27dp"
-                android:text="Set alarm"
-                android:textColor="@color/black"
-                android:textSize="17sp"
-                app:layout_constraintStart_toEndOf="@+id/btnTimePicker"
-                app:layout_constraintTop_toBottomOf="@+id/tvDesc">
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/rbToday"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/radio_selector"
+            android:button="@null"
+            android:gravity="center"
+            android:padding="12dp"
+            android:text="Today"
+            android:textColor="#D6D6D6"
+            android:textSize="14sp">
 
-            </TextView>-->
+        </androidx.appcompat.widget.AppCompatRadioButton>
 
-            <CheckBox
-                android:id="@+id/cbPriority"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="15dp"
-                android:text="High priority"
-                android:backgroundTint="@color/mainBlue"
-                android:textAlignment="viewEnd"
-                android:textColor="@color/black"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnTimePicker">
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/rbTomorrow"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/radio_selector"
+            android:button="@null"
+            android:gravity="center"
+            android:padding="12dp"
+            android:text="Tomorrow"
+            android:textColor="#D6D6D6"
+            android:textSize="14sp">
 
-            </CheckBox>
+        </androidx.appcompat.widget.AppCompatRadioButton>
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/rbWeekend"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/radio_selector"
+            android:button="@null"
+            android:gravity="center"
+            android:padding="12dp"
+            android:text="This weekend"
+            android:textColor="#D6D6D6"
+            android:textSize="14sp">
+
+
+        </androidx.appcompat.widget.AppCompatRadioButton>
+
+        <ImageButton
+            android:id="@+id/btnTimePicker"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:background="@drawable/radio_normall"
+            android:src="@drawable/baseline_calendar_today_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvDesc">
+
+        </ImageButton>
+
+
+    </RadioGroup>
+
+    <CheckBox
+        android:id="@+id/cbPriority"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="@color/mainBlue"
+        android:text="High priority"
+        android:textAlignment="viewEnd"
+        android:textColor="@color/hint"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioG">
+
+    </CheckBox>
 
 
     <Button

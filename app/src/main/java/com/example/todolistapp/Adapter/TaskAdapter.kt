@@ -28,6 +28,8 @@ class TaskAdapter(var taskList : ArrayList<Task>) : RecyclerView.Adapter<TaskAda
 
         if(task.priority!!){
             holder.binding.ivPriority.visibility = View.VISIBLE
+        }else{
+            holder.binding.ivPriority.visibility = View.INVISIBLE
         }
 
         val isVisible = task.visibility

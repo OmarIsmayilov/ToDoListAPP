@@ -13,7 +13,9 @@
         <action
             android:id="@+id/action_loginFragment_to_mainFragment"
             app:destination="@id/mainFragment"
-            app:enterAnim="@android:anim/fade_in" />
+            app:enterAnim="@android:anim/fade_in"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_loginFragment_to_registerFragment"
             app:destination="@id/registerFragment"
@@ -29,9 +31,9 @@
             app:destination="@id/bottomSheetFragment"
             app:popUpToInclusive="true" />
         <action
-            android:id="@+id/action_mainFragment_to_loginFragment"
-            app:destination="@id/loginFragment"
-            app:popUpToInclusive="true" />
+            android:id="@+id/action_mainFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:enterAnim="@android:anim/fade_in" />
     </fragment>
     <dialog
         android:id="@+id/bottomSheetFragment"
@@ -62,10 +64,24 @@
         <action
             android:id="@+id/action_splashFragment_to_loginFragment"
             app:destination="@id/loginFragment"
+            app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_splashFragment_to_mainFragment"
             app:destination="@id/mainFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.todolistapp.Fragments.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@android:anim/fade_out"
+            app:popUpTo="@id/profileFragment"
             app:popUpToInclusive="true" />
     </fragment>
 </navigation>

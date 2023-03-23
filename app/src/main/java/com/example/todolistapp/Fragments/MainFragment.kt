@@ -31,7 +31,7 @@ class MainFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -47,8 +47,7 @@ class MainFragment : Fragment() {
 
         binding.btnAdd.setOnClickListener { showBottomSheet() }
         binding.btnProfile.setOnClickListener{
-            auth.signOut()
-            findNavController().navigate(R.id.action_mainFragment_to_loginFragment)
+            findNavController().navigate(MainFragmentDirections.actionMainFragmentToProfileFragment())
         }
 
     }
@@ -64,7 +63,7 @@ class MainFragment : Fragment() {
 
                 if (snapshot.exists()){
 
-                    for(taskSnapshot in snapshot.children){
+                    for(taskSnapshot in snapshot.child(auth.currentUser?.uid.toString()).children){
                         val task = taskSnapshot.getValue(Task::class.java)
                         taskList.add(task!!)
 

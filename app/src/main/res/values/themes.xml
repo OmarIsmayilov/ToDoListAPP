@@ -23,4 +23,8 @@
     <style name="AppModelStyle" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/bottom_sheet_bg</item>
     </style>
+
+    <style name="ShapeAppearanceOverlay.App.CornerCircle" parent="">
+        <item name="cornerSize">50%</item>
+    </style>
 </resources>
